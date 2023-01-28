@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThalesAssessment.Server", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThalesAssessment.DataAccess", "ThalesAssessment.DataAccess\ThalesAssessment.DataAccess.csproj", "{BB3677D6-315A-450B-8569-229BC10205F0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThalesAssessment.Entities", "ThalesAssessment.Entities\ThalesAssessment.Entities.csproj", "{EEC48E18-EB01-4DB1-B8DC-0A95DD605A4A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{BB3677D6-315A-450B-8569-229BC10205F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB3677D6-315A-450B-8569-229BC10205F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB3677D6-315A-450B-8569-229BC10205F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEC48E18-EB01-4DB1-B8DC-0A95DD605A4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEC48E18-EB01-4DB1-B8DC-0A95DD605A4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEC48E18-EB01-4DB1-B8DC-0A95DD605A4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEC48E18-EB01-4DB1-B8DC-0A95DD605A4A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

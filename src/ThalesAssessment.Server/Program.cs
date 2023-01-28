@@ -1,36 +1,66 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Data.Sqlite;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
+using System.Text.Json.Serialization;
+using System.Threading.Tasks;
+using ThalesAssessment.DataAccess;
+using ThalesAssessment.Entities.Settings;
 
-namespace ThalesAssessment.Server
+namespace ThalesAssessment.Server;
+
+public class Program
 {
-    public class Program
+    public static async Task Main(string[] args)
     {
-        public static void Main(string[] args)
+        var builder = WebApplication.CreateBuilder(args);
+        
+        // Add services to the container.
+        builder.Services.AddOptions<AppSettings>().BindConfiguration(nameof(AppSettings));
+        builder.Services.AddSingleton(resolver => resolver.GetRequiredService<IOptions<AppSettings>>().Value);
+
+        var settings = builder.Configuration.GetSection(nameof(AppSettings)).Get<AppSettings>();
+
+        builder.Services.AddDbContext<AssessmentContext>(options =>
         {
-            var builder = WebApplication.CreateBuilder(args);
+            var connection = new SqliteConnection($"Filename={settings.SqlitePath}");
+            connection.Open();
 
-            // Add services to the container.
+            options.UseSqlite(connection);
+        });
 
-            builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+        builder.Services.AddControllers()
+            .AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
-            var app = builder.Build();
+        
+        builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddSwaggerGen();
 
-            // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
+        var app = builder.Build();
 
-            app.UseHttpsRedirection();
-
-            app.UseAuthorization();
-
-
-            app.MapControllers();
-
-            app.Run();
+        using (var scope = app.Services.CreateScope())
+        {
+            var dbContext = scope.ServiceProvider.GetRequiredService<AssessmentContext>();
+            await dbContext.Database.EnsureCreatedAsync();
         }
+
+        // Configure the HTTP request pipeline.
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI();
+        }
+
+        app.UseHttpsRedirection();
+
+        app.UseAuthorization();
+
+
+        app.MapControllers();
+
+        app.Run();
     }
 }
