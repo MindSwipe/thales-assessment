@@ -26,7 +26,7 @@ public class Program
 
         builder.Services.AddDbContext<AssessmentContext>(options =>
         {
-            var connection = new SqliteConnection($"Filename={settings.SqlitePath}");
+            var connection = new SqliteConnection($"Filename={settings!.SqlitePath}");
             connection.Open();
 
             options.UseSqlite(connection);

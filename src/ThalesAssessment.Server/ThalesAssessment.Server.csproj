@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ThalesAssessment.ApiModels\ThalesAssessment.ApiModels.csproj" />
     <ProjectReference Include="..\ThalesAssessment.DataAccess\ThalesAssessment.DataAccess.csproj" />
     <ProjectReference Include="..\ThalesAssessment.Entities\ThalesAssessment.Entities.csproj" />
     <ProjectReference Include="..\ThalesAssessment.Queries\ThalesAssessment.Queries.csproj" />
