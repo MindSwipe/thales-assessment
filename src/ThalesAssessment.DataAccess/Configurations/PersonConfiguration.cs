@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using ThalesAssessment.DataAccess.Entities;
+using ThalesAssessment.Entities;
 
 namespace ThalesAssessment.DataAccess.Configurations;
 

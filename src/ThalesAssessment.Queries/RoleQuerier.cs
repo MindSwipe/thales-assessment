@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ThalesAssessment.DataAccess;
-using ThalesAssessment.DataAccess.Entities;
+using ThalesAssessment.Entities;
 
 namespace ThalesAssessment.Queries;
 

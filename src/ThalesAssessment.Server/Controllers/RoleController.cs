@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using ThalesAssessment.DataAccess;
-using ThalesAssessment.DataAccess.Entities;
+using ThalesAssessment.Entities;
 using ThalesAssessment.Queries;
 
 namespace ThalesAssessment.Server.Controllers;

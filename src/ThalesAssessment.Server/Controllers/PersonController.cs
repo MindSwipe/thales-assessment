@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ThalesAssessment.DataAccess;
-using ThalesAssessment.DataAccess.Entities;
+using ThalesAssessment.Entities;
 using ThalesAssessment.Queries;
 
 namespace ThalesAssessment.Server.Controllers;
@@ -33,5 +33,12 @@ public class PersonController : ControllerBase
     public async Task<List<Person>> GetAllPersons()
     {
         return await PersonQuerier.GetAll(_dbContext);
+    }
+
+    [HttpPost]
+    [Route("assignRoleToPerson")]
+    public async Task AssignRoleToPerson()
+    {
+
     }
 }

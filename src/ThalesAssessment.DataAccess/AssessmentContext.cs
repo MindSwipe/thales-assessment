@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ThalesAssessment.DataAccess.Configurations;
-using ThalesAssessment.DataAccess.Entities;
+using ThalesAssessment.Entities;
 
 namespace ThalesAssessment.DataAccess;
 

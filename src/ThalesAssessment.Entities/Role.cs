@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ThalesAssessment.DataAccess.Entities;
+namespace ThalesAssessment.Entities;
 
 public class Role
 {
