@@ -5,13 +5,13 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThalesAssessment.Client", "ThalesAssessment.Client\ThalesAssessment.Client.csproj", "{B040E012-ACF8-4643-A241-0E847E873953}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThalesAssessment.Cqrs", "ThalesAssessment.Cqrs\ThalesAssessment.Cqrs.csproj", "{C500BD35-BC13-456D-A4A7-AA7ED4C9AF96}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThalesAssessment.Server", "ThalesAssessment.Server\ThalesAssessment.Server.csproj", "{723A61B2-E835-4F3E-B960-6CEB86A656D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThalesAssessment.DataAccess", "ThalesAssessment.DataAccess\ThalesAssessment.DataAccess.csproj", "{BB3677D6-315A-450B-8569-229BC10205F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThalesAssessment.DataAccess", "ThalesAssessment.DataAccess\ThalesAssessment.DataAccess.csproj", "{BB3677D6-315A-450B-8569-229BC10205F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThalesAssessment.Entities", "ThalesAssessment.Entities\ThalesAssessment.Entities.csproj", "{EEC48E18-EB01-4DB1-B8DC-0A95DD605A4A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThalesAssessment.Entities", "ThalesAssessment.Entities\ThalesAssessment.Entities.csproj", "{EEC48E18-EB01-4DB1-B8DC-0A95DD605A4A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThalesAssessment.Queries", "ThalesAssessment.Queries\ThalesAssessment.Queries.csproj", "{C1B0EE11-3AA8-4975-A419-71350959B220}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,6 @@ Global
 		{B040E012-ACF8-4643-A241-0E847E873953}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B040E012-ACF8-4643-A241-0E847E873953}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B040E012-ACF8-4643-A241-0E847E873953}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C500BD35-BC13-456D-A4A7-AA7ED4C9AF96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C500BD35-BC13-456D-A4A7-AA7ED4C9AF96}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C500BD35-BC13-456D-A4A7-AA7ED4C9AF96}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C500BD35-BC13-456D-A4A7-AA7ED4C9AF96}.Release|Any CPU.Build.0 = Release|Any CPU
 		{723A61B2-E835-4F3E-B960-6CEB86A656D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{723A61B2-E835-4F3E-B960-6CEB86A656D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{723A61B2-E835-4F3E-B960-6CEB86A656D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +35,10 @@ Global
 		{EEC48E18-EB01-4DB1-B8DC-0A95DD605A4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EEC48E18-EB01-4DB1-B8DC-0A95DD605A4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EEC48E18-EB01-4DB1-B8DC-0A95DD605A4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1B0EE11-3AA8-4975-A419-71350959B220}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1B0EE11-3AA8-4975-A419-71350959B220}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1B0EE11-3AA8-4975-A419-71350959B220}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1B0EE11-3AA8-4975-A419-71350959B220}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
