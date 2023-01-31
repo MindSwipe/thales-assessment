@@ -18,6 +18,8 @@ namespace ThalesAssessment.Client.ViewModels
 
         private bool _isEnabled;
 
+        private object? _selectedTreeViewItem;
+
         private readonly ApiService _apiService;
 
         public PersonRoleViewModel()
@@ -30,6 +32,9 @@ namespace ThalesAssessment.Client.ViewModels
             AssignNewRoleCommand = new AsyncRelayCommand(AssignNewRole);
             CreateNewRoleCommand = new RelayCommand(CreateNewRole);
             DeleteRoleCommand = new AsyncRelayCommand(DeleteRole);
+            CreateNewUserCommand = new RelayCommand(CreateNewUser);
+            TreeViewSelectedItemChangedCommand = new RelayCommand<object>(TreeViewSelectedItemChanged);
+            DeleteUserCommand = new AsyncRelayCommand(DeleteUser);
         }
 
         public AsyncRelayCommand LoadPersonsCommand { get; set; }
@@ -39,6 +44,12 @@ namespace ThalesAssessment.Client.ViewModels
         public RelayCommand CreateNewRoleCommand { get; set; }
 
         public AsyncRelayCommand DeleteRoleCommand { get; set; }
+
+        public RelayCommand CreateNewUserCommand { get; set; }
+
+        public RelayCommand<object> TreeViewSelectedItemChangedCommand { get; set; }
+
+        public AsyncRelayCommand DeleteUserCommand { get; set; }
 
         public ObservableCollection<Person> Persons
         {
@@ -116,7 +127,10 @@ namespace ThalesAssessment.Client.ViewModels
                 async selectedItem =>
                 {
                     if (selectedItem == null || !(selectedItem.Item is Role role))
+                    {
+                        IsEnabled = true;
                         return;
+                    }
 
                     // Null Forgiving: Since 'HasPersonSelected' is true, 'SelectedPerson' is not null
                     await _apiService.AssignRoleToPerson(SelectedPerson!, role);
@@ -142,7 +156,47 @@ namespace ThalesAssessment.Client.ViewModels
 
         private async Task DeleteRole()
         {
+            if (!HasPersonSelected)
+                return;
 
+            if (_selectedTreeViewItem is not Role role)
+                return;
+
+            IsEnabled = false;
+            await _apiService.DeleteRole(role.Id);
+            await LoadPersons();
+            IsEnabled = true;
+        }
+
+        private void CreateNewUser()
+        {
+            IsEnabled = false;
+            var newUserWindow = new NewPersonView();
+            newUserWindow.Closed += async (sender, args) =>
+            {
+                await LoadPersons();
+                IsEnabled = true;
+            };
+
+            newUserWindow.Show();
+        }
+
+        private async Task DeleteUser()
+        {
+            if (!HasPersonSelected)
+                return;
+
+            IsEnabled = false;
+
+            // Null Forgiving: Since 'HasPersonSelected' is true, 'SelectedPerson' is not null
+            await _apiService.DeleteUser(SelectedPerson!.Id);
+            await LoadPersons();
+            IsEnabled = true;
+        }
+
+        private void TreeViewSelectedItemChanged(object? selectedObject)
+        {
+            _selectedTreeViewItem = selectedObject;
         }
     }
 }

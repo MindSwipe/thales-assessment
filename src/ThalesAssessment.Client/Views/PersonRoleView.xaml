@@ -21,8 +21,8 @@
             </interactivity:EventTrigger>
         </interactivity:Interaction.Triggers>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3*" />
-            <ColumnDefinition Width="5*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -41,9 +41,14 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <TreeView Grid.Column="1" ItemsSource="{Binding SelectedPerson.Roles}">
+        <TreeView Grid.Column="1" ItemsSource="{Binding SelectedPerson.Roles}" x:Name="TreeRoles">
+            <interactivity:Interaction.Triggers>
+                <interactivity:EventTrigger EventName="SelectedItemChanged">
+                    <interactivity:InvokeCommandAction Command="{Binding TreeViewSelectedItemChangedCommand}" CommandParameter="{Binding ElementName=TreeRoles, Path=SelectedItem}" />
+                </interactivity:EventTrigger>
+            </interactivity:Interaction.Triggers>
             <TreeView.ItemTemplate>
-                <HierarchicalDataTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding Persons}">
                     <Label Content="{Binding Name}" />
                 </HierarchicalDataTemplate>
             </TreeView.ItemTemplate>
@@ -53,6 +58,8 @@
             <UniformGrid Rows="1">
                 <Button Margin="5" Command="{Binding LoadPersonsCommand}">Refresh</Button>
                 <Button Margin="5" IsEnabled="{Binding HasPersonSelected}" Command="{Binding AssignNewRoleCommand}">Assign new Role</Button>
+                <Button Margin="5" Command="{Binding CreateNewUserCommand}">New User</Button>
+                <Button Margin="5" IsEnabled="{Binding HasPersonSelected}" Command="{Binding DeleteUserCommand}">Delete User</Button>
             </UniformGrid>
         </Border>
 

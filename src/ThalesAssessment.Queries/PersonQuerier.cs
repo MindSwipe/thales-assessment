@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using ThalesAssessment.DataAccess;
 using Microsoft.EntityFrameworkCore;
@@ -24,5 +22,12 @@ public static class PersonQuerier
             .Where(x => x.Id == personId)
             .Include(x => x.Roles)
             .FirstOrDefaultAsync();
+    }
+
+    public static async Task<List<Person>> GetByIds(AssessmentContext context, List<int> personIds)
+    {
+        return await context.Persons
+            .Where(x => personIds.Contains(x.Id))
+            .ToListAsync();
     }
 }

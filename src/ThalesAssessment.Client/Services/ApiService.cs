@@ -25,6 +25,19 @@ public class ApiService
         return await _httpClient.GetFromJsonAsync<List<Person>>("/person/getAll");
     }
 
+    public async Task CreateNewUser(string name)
+    {
+        await _httpClient.PostAsJsonAsync("/person/create", new CreatePerson
+        {
+            Name = name
+        });
+    }
+
+    public async Task DeleteUser(int userId)
+    {
+        await _httpClient.DeleteAsync($"person/delete?personId={userId}");
+    }
+
     public async Task<List<Role>?> GetAllRoles()
     {
         return await _httpClient.GetFromJsonAsync<List<Role>>("/role/getAll");
@@ -41,9 +54,14 @@ public class ApiService
 
     public async Task CreateNewRole(string name)
     {
-        await _httpClient.PostAsJsonAsync("/role/create", new Role
+        await _httpClient.PostAsJsonAsync("/role/create", new CreateRole
         {
             Name = name,
         });
+    }
+
+    public async Task DeleteRole(int roleId)
+    {
+        await _httpClient.DeleteAsync($"/role/delete?roleId={roleId}");
     }
 }

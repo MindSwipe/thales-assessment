@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using ThalesAssessment.ApiModels.RequestModels;
 using ThalesAssessment.DataAccess;
@@ -23,8 +21,12 @@ public class PersonController : ControllerBase
 
     [HttpPost]
     [Route("create")]
-    public async Task CreatePerson([FromBody] Person person)
+    public async Task CreatePerson([FromBody] CreatePerson personRequest)
     {
+        var person = personRequest.ToPerson();
+        var roles = await RoleQuerier.GetByIds(_dbContext, personRequest.RoleIds);
+        person.Roles = roles;
+
         _dbContext.Persons.Update(person);
         await _dbContext.SaveChangesAsync();
     }
@@ -63,5 +65,18 @@ public class PersonController : ControllerBase
         await _dbContext.SaveChangesAsync();
 
         return Ok(person);
+    }
+
+    [HttpDelete]
+    [Route("delete")]
+    public async Task<IActionResult> DeletePerson([FromQuery] int personId)
+    {
+        var person = await PersonQuerier.GetById(_dbContext, personId);
+        if (person == null)
+            return NotFound();
+
+        _dbContext.Remove(person);
+        await _dbContext.SaveChangesAsync();
+        return Ok();
     }
 }

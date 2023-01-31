@@ -36,6 +36,8 @@ namespace ThalesAssessment.Client.Popovers
             SelectLabelText = selectLabelText;
             SelectCommand = new AsyncRelayCommand(Select);
             _callback = callback;
+
+            Closed += OnClosed;
             
             InitializeComponent();
         }
@@ -46,6 +48,11 @@ namespace ThalesAssessment.Client.Popovers
                 await _callback.Invoke(SelectedItem);
 
             Close();
+        }
+
+        private void OnClosed(object? sender, EventArgs e)
+        {
+            _callback?.Invoke(null);
         }
     }
 }

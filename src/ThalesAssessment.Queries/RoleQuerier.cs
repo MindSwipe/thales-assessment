@@ -14,7 +14,6 @@ public static class RoleQuerier
     public static async Task<List<Role>> GetAll(AssessmentContext context)
     {
         return await context.Roles
-            .Include(x => x.Persons)
             .ToListAsync();
     }
 
@@ -24,5 +23,12 @@ public static class RoleQuerier
             .Where(x => x.Id == id)
             .Include(x => x.Persons)
             .FirstOrDefaultAsync();
+    }
+
+    public static async Task<List<Role>> GetByIds(AssessmentContext context, List<int> ids)
+    {
+        return await context.Roles
+            .Where(x => ids.Contains(x.Id))
+            .ToListAsync();
     }
 }
