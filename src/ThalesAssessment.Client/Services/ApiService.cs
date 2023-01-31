@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
-using System.Windows.Documents;
 using ThalesAssessment.ApiModels.RequestModels;
 using ThalesAssessment.Entities;
 using ThalesAssessment.Entities.Settings;
