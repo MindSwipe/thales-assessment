@@ -26,3 +26,10 @@ Currently quite a bit of logic is done in the controllers themselves, I would pr
 
 3. Testing  
 A definitve must before this application could be used are automated tests, I purposefully left these out since I don't believe they are required to show my C#/ .NET skills, but I will elaborate on how I'd implement them here. I'm a huge fan of DI, even in the automated tests I'd inject (potentially mocked) services needed. For example, the `AssessmentContext` would be injected in a way so each automated test gets its own DB so that collisions in test data between tests cannot happen. Furthermore the eventual services (as described in #2) would also be injected into tests for testing.
+
+## Images
+![Empty client](/images/v0.0.1/emptyClient.PNG)
+
+![Create New Person dialog](/images/v0.0.1/createNewPerson.PNG)
+
+![Client with users and role](/images/v0.0.1/clientWithUsersAndRole.PNG)
